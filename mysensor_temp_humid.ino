@@ -21,7 +21,7 @@
 
 DHT_Unified dht(DHT_PIN, DHT_TYPE);
 
-int seconds_between_messages = 30;
+int seconds_between_messages = 2 * 60;
 uint32_t delayMS = seconds_between_messages*1000;
 
 MyMessage msgHum(CHILD_ID_HUM, V_HUM);
@@ -83,4 +83,6 @@ void loop() {
     Serial.print("Humidity: "); Serial.print(event.relative_humidity); Serial.println("%");
     send(msgHum.set(event.relative_humidity, 1));
   }
+
+  delay(delayMS);
 }
